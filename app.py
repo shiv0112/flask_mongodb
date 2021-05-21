@@ -13,20 +13,19 @@ def myform():
 
 @app.route('/data',methods=['POST'])
 def mydata():
-    if request.method=='POST':
+    if request.method == 'POST':
        if request.form['submit'] == 'submit_a':
-          data=request.form.get('x')
-          data1=request.form.get('y')
-          data2=request.form.get('z')
+          data1=request.form.get('x')
+          data2=request.form.get('y')
+          data3=request.form.get('z')
        
-          db=[
-            {
-              "name": data,
-              "class": data1,
-              "section": data2
+          db={
+              "name": data1,
+              "class": data2,
+              "section": data3
              }
-            ]
-          myclient['db_shiv']['students'].insert(db)
+      
+          mycol.insert_one(db)
        
        elif request.form['submit'] == 'submit_b':
            return(view())
@@ -43,4 +42,3 @@ def view():
 if __name__ == '__main__':
     app.debug = True
     app.run(port=4595)
-
